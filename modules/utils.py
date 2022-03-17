@@ -4,6 +4,7 @@ import numpy as np
 import requests
 import zipfile
 import os
+import geopandas as gpd
 my_path = os.path.abspath(__file__) 
 from constants import MY_PATH_TO_RESULT
 
@@ -19,6 +20,17 @@ def get_countries_geodata():
 
     with zipfile.ZipFile("data.zip","r") as zip_ref:
         zip_ref.extractall()
+
+    countries = gpd.read_file('data/ne_110m_admin_0_countries.shp')
+    return countries
+
+def get_WHO_countries_code():
+   country_codes = pd.read_csv("")
+   return country_codes
+
+def get_default_geodata():
+   world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+   return world
 
 
 def plotScatterMatrix(df, plotSize, textSize, name):
@@ -60,6 +72,5 @@ def plotCorrelationMatrix(df, graphWidth, filename):
     plt.gca().xaxis.tick_bottom()
     plt.colorbar(corrMat)
     plt.title(f'Correlation Matrix for {filename}', fontsize=15)
-    plt.show()
     plt.savefig(
-        f'{MY_PATH_TO_RESULT}/Correlation Matrix for {filename}.png', bbox_inches='tight', pad_inches=0.2)
+        f'{MY_PATH_TO_RESULT}/Correlation Matrix for {filename}.png', pad_inches=0.2)
