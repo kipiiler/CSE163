@@ -5,7 +5,7 @@ from modules.utils import get_countries_geodata, save_file
 
 def main():
     test = pd.read_csv('data/oasis_cross-sectional.csv')
-    print("running Covid analysis")
+    print("Running Covid analysis")
     run_covid_analysis()
     print("main")
 

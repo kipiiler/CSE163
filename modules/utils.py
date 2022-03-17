@@ -25,8 +25,12 @@ def get_countries_geodata():
     return countries
 
 def get_WHO_countries_code():
-   country_codes = pd.read_csv("")
+   country_codes = pd.read_csv("data/country_codes.csv")
    return country_codes
+
+def get_states():
+    states = gpd.read_file("data/cb_2014_us_state_20m.shp")
+    return states
 
 def get_default_geodata():
    world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
